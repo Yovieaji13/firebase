@@ -54,12 +54,15 @@ Future<String> signInEmail(String emailInput, String password) async {
       email = user.email;
       assert(!user.isAnonymous);
       assert(await user.getIdToken() != null);
+
       final User currentUser = _auth.currentUser;
       assert(user.uid == currentUser.uid);
       print('signInWithGoogle succeeded: $user');
       return '$user';
     }
-  } on FirebaseAuthException catch (e) {
+  } 
+  
+  on FirebaseAuthException catch (e) {
     if (e.code == 'user-not-found') {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailInput, password: password);
