@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'login_page.dart';
 import 'sign_in.dart';
 
-class FirstScreen extends StatelessWidget {
+class FirstScreenEmail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,9 +21,9 @@ class FirstScreen extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               CircleAvatar(
-                backgroundImage: NetworkImage(
-                  imageUrl,
-                ),
+                // backgroundImage: NetworkImage(
+                //   imageUrl,
+                // ),
                 radius: 60,
                 backgroundColor: Colors.transparent,
               ),
@@ -36,7 +36,7 @@ class FirstScreen extends StatelessWidget {
                     color: Colors.black54),
               ),
               Text(
-                name ?? email,
+                email,
                 style: TextStyle(
                     fontSize: 25,
                     color: Colors.deepPurple,
