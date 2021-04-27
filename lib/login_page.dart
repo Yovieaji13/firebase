@@ -21,10 +21,9 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              FlutterLogo(size: 150),
-              SizedBox(height: 50),
+              FlutterLogo(size: 100),
+              SizedBox(height: 10),
               _formBuilder(),
-              _signInButton(),
             ],
           ),
         ),
@@ -32,8 +31,8 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
- Widget _formBuilder() {
- return Form(
+  Widget _formBuilder() {
+    return Form(
       // autovalidate: true,
       child: Column(
         children: <Widget>[
@@ -84,79 +83,101 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
           ),
-          OutlineButton( 
-            onPressed: () async{
-              signInEmail(emailController.text, passwordController.text)
-              .then((result){
-                if(result != null){
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context){
+          SizedBox(height: 20, width: 10),
+          Container(
+            width: double.infinity,
+            child: RaisedButton(
+              onPressed: () {
+                signInEmail(emailController.text, passwordController.text)
+                    .then((result) {
+                  if (result != null) {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
                       return FirstScreenEmail();
-                    }
-                  )
-                );
-              }
-            });
-          },
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-          highlightElevation: 0,
-          borderSide: BorderSide(color: Colors.grey),
-            color: Colors.white,
-            padding: const EdgeInsets.only(left: 10),
-            child: Container(
-              width: MediaQuery.of(context).size.width * 0.8,
-              height: MediaQuery.of(context).size.height * 0.07,
-              child: Center(
-                child: Text(
-                  'Sign in with Email',
-                  style: TextStyle(fontSize: 20, color: Colors.grey),
+                    }));
+                  }
+                });
+              },
+              child: Text(
+                'Login',
+                style: TextStyle(color: Colors.white),
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              color: Colors.grey,
+              elevation: 0,
+              padding: EdgeInsets.symmetric(vertical: 16),
+            ),
+          ),
+          SizedBox(height: 20),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: Divider(
+                  thickness: 1,
+                  color: Colors.black,
                 ),
               ),
+              SizedBox(width: 20),
+              Text(
+                'OR',
+                style: TextStyle(color: Colors.black),
+              ),
+              SizedBox(width: 20),
+              Expanded(
+                child: Divider(
+                  thickness: 1,
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 20),
+          Container(
+            width: double.infinity,
+            child: RaisedButton(
+              onPressed: () {
+                signInWithGoogle().then((result) {
+                  if (result != null) {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return FirstScreen();
+                        },
+                      ),
+                    );
+                  }
+                });
+              },
+              child: Text(
+                'Sign with Google',
+                style: TextStyle(color: Colors.white),
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              color: Colors.grey,
+              elevation: 0,
+              padding: EdgeInsets.symmetric(vertical: 16),
+            ),
+          ),
+          SizedBox(height: 8),
+          Container(
+            width: double.infinity,
+            child: RaisedButton(
+              onPressed: () {},
+              child: Text('Sign with Facebook',
+                  style: TextStyle(color: Colors.white)),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              color: Colors.grey,
+              elevation: 0,
+              padding: EdgeInsets.symmetric(vertical: 16),
             ),
           ),
         ],
-      ),
-    );
- }
-          
-  Widget _signInButton() {
-    return OutlineButton(
-      splashColor: Colors.grey,
-      onPressed: () {
-        signInWithGoogle().then((result) {
-          if (result != null) {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) {
-                  return FirstScreen();
-                },
-              ),
-            );
-          }
-        });
-      },
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-      highlightElevation: 0,
-      borderSide: BorderSide(color: Colors.grey),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            // Image(image: AssetImage("assets/google_logo.png"), height: 35.0),
-            Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Text(
-                'Sign in with Google',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.grey,
-                ),
-              ),
-            )
-          ],
-        ),
       ),
     );
   }
