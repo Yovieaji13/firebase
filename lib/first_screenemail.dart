@@ -16,7 +16,7 @@ class FirstScreenEmail extends StatelessWidget {
             children: <Widget>[
               CircleAvatar(
                 // backgroundImage: NetworkImage(
-                //   imageUrl,
+                //   imageUrl ?? 
                 // ),
                 radius: 60,
                 backgroundColor: Colors.transparent,
@@ -30,7 +30,7 @@ class FirstScreenEmail extends StatelessWidget {
                     color: Colors.black54),
               ),
               Text(
-                email,
+                name ?? email.split('@')[0],
                 style: TextStyle(
                     fontSize: 25,
                     color: Colors.deepPurple,

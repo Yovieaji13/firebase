@@ -30,7 +30,7 @@ class FirstScreen extends StatelessWidget {
                     color: Colors.black54),
               ),
               Text(
-                name ?? email,
+                name,
                 style: TextStyle(
                     fontSize: 25,
                     color: Colors.deepPurple,

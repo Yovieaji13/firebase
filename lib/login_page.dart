@@ -21,8 +21,29 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              FlutterLogo(size: 100),
-              SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: Row(children: [
+                  Text(
+                    'Hello.',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 48,
+                      fontWeight: FontWeight.w900,
+                      letterSpacing: 1.5,
+                    ),
+                  ),
+                  SizedBox(width: 16),
+                  Expanded(
+                    child: Divider(
+                      thickness: 3,
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+              SizedBox(width: 20),
               _formBuilder(),
             ],
           ),
@@ -33,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _formBuilder() {
     return Form(
-      // autovalidate: true,
+      autovalidate: true,
       child: Column(
         children: <Widget>[
           Padding(
@@ -42,16 +63,16 @@ class _LoginPageState extends State<LoginPage> {
               controller: emailController,
               keyboardType: TextInputType.emailAddress,
               style: TextStyle(color: Colors.black),
-              validator: (username) {
-                return username.isEmpty ? "*Mohon diisi" : null;
+              validator: (email) {
+                return email.isEmpty ? "*Mohon diisi" : null;
               },
               decoration: InputDecoration(
                 border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.pink, width: 10)),
+                    borderSide: BorderSide(color: Colors.grey, width: 10)),
                 enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 1.5)),
+                    borderSide: BorderSide(color: Colors.grey, width: 1.5)),
                 focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 1.5)),
+                    borderSide: BorderSide(color: Colors.grey, width: 1.5)),
                 labelText: 'Email',
                 labelStyle: TextStyle(
                   color: Colors.black,
@@ -70,12 +91,12 @@ class _LoginPageState extends State<LoginPage> {
               },
               decoration: InputDecoration(
                 border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black)),
+                    borderSide: BorderSide(color: Colors.grey)),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black, width: 1.5),
+                  borderSide: BorderSide(color: Colors.grey, width: 1.5),
                 ),
                 focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 1.5)),
+                    borderSide: BorderSide(color: Colors.grey, width: 1.5)),
                 labelText: 'Password',
                 labelStyle: TextStyle(
                   color: Colors.grey,
@@ -86,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
           SizedBox(height: 20, width: 10),
           Container(
             width: double.infinity,
-            child: RaisedButton(
+            child: OutlineButton(
               onPressed: () {
                 signInEmail(emailController.text, passwordController.text)
                     .then((result) {
@@ -100,13 +121,12 @@ class _LoginPageState extends State<LoginPage> {
               },
               child: Text(
                 'Login',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.blue),
               ),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(100),
               ),
-              color: Colors.grey,
-              elevation: 0,
+              borderSide: BorderSide(color: Colors.grey),
               padding: EdgeInsets.symmetric(vertical: 16),
             ),
           ),
@@ -136,7 +156,7 @@ class _LoginPageState extends State<LoginPage> {
           SizedBox(height: 20),
           Container(
             width: double.infinity,
-            child: RaisedButton(
+            child: OutlineButton(
               onPressed: () {
                 signInWithGoogle().then((result) {
                   if (result != null) {
@@ -152,28 +172,12 @@ class _LoginPageState extends State<LoginPage> {
               },
               child: Text(
                 'Sign with Google',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.blue),
               ),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(100),
               ),
-              color: Colors.grey,
-              elevation: 0,
-              padding: EdgeInsets.symmetric(vertical: 16),
-            ),
-          ),
-          SizedBox(height: 8),
-          Container(
-            width: double.infinity,
-            child: RaisedButton(
-              onPressed: () {},
-              child: Text('Sign with Facebook',
-                  style: TextStyle(color: Colors.white)),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-              color: Colors.grey,
-              elevation: 0,
+              borderSide: BorderSide(color: Colors.grey),
               padding: EdgeInsets.symmetric(vertical: 16),
             ),
           ),

@@ -51,7 +51,9 @@ Future<String> signInEmail(String emailInput, String password) async {
 
     if (user != null) {
       assert(user.email != null);
+      name = null;
       email = user.email;
+      imageUrl = null;
       assert(!user.isAnonymous);
       assert(await user.getIdToken() != null);
 
